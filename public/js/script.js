@@ -1,3 +1,13 @@
+const clearMessageError = (option) => {
+
+    if (typeof option == 'string') {
+        document.getElementById(option).innerHTML = '';
+    } else {
+        option.forEach((e) => {
+            document.getElementById(e).innerHTML = '';
+        })
+    }
+}
 const deleteUserModal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
 
 const URL_BASE = 'http://localhost/crud-user/public';
@@ -43,3 +53,4 @@ if (deleteUserForm) {
             .catch(error => console.log(error))
     })
 }
+

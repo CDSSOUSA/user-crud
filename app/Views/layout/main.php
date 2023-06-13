@@ -1,6 +1,5 @@
-
-    <?php echo view('layout/header.php');?>
-    <div class="container">
+<?php echo view('layout/header.php'); ?>
+<main class="container">
     <?php echo $this->renderSection('content'); ?>
-    </div>
-    <?php echo view('layout/footer.php');
+</main>
+<?php echo view('layout/footer.php');

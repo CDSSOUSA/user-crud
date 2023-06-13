@@ -1,37 +1,39 @@
 <?php
 $this->extend('/layout/main.php');
 $this->section('content');
-echo session()->getFlashdata('message') ? '<div class="alert alert-' . session()->getFlashdata('type') . ' alert-dismissible fade show" role="alert">
+
+
+?>
+<div class="row col-4 p-3 w-50 m-auto" style="border:0px solid #eaeaea;">
+    <?= session()->getFlashdata('message') ? '<div class="alert alert-' . session()->getFlashdata('type') . ' alert-dismissible fade show" role="alert">
 <strong>' . session()->getFlashdata('greeting') . '</strong> ' . session()->getFlashdata('message') . '
 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>' : '';
-
-?>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col" colspan="2" class="text-center">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-
-            foreach ($users as $user) : ?>
+    ?>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td><?= $user->id; ?></td>
-                    <td><?= $user->name; ?></td>
-                    <td><?= $user->email; ?></td>
-                    <td><?= anchor('/user/' . $user->id . '/edit', 'Editar'); ?> </td>                    
-                    <td><?= anchor('#', 'Remove', ['onclick' => 'showUser(' . $user->id . ')', 'data-bs-toggle' => 'modal', 'data-bs-target' => 'deleteUserModal']); ?></td>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col" colspan="2" class="text-center">Ações</th>
                 </tr>
-            <?php endforeach;
-            ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user) : ?>
+                    <tr>
+                        <td><?= $user->id; ?></td>
+                        <td><?= $user->name; ?></td>
+                        <td><?= $user->email; ?></td>
+                        <td><?= anchor('/user/' . $user->id . '/edit', 'Editar'); ?> </td>
+                        <td><?= anchor('#', 'Remove', ['onclick' => 'showUser(' . $user->id . ')', 'data-bs-toggle' => 'modal', 'data-bs-target' => 'deleteUserModal']); ?></td>
+                    </tr>
+                <?php endforeach;
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
